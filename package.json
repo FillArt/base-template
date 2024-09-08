@@ -1,0 +1,29 @@
+{
+  "name": "base-template",
+  "version": "1.0.0",
+  "description": "This project will be a universal template for different projects",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://artiomf@bitbucket.org/artiomf/base-template.git"
+  },
+  "keywords": [
+    "universal",
+    "template"
+  ],
+  "author": "Artiom Filipopovschii",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://bitbucket.org/artiomf/base-template/issues"
+  },
+  "homepage": "https://bitbucket.org/artiomf/base-template#readme",
+  "devDependencies": {
+    "gulp": "^5.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-rename": "^2.0.0"
+  }
+}
