@@ -8,6 +8,7 @@ const svgmin    = require('gulp-svgmin')        // Minified SVG plugin
 const svgSprite = require('gulp-svg-sprite');   // Plugin for create SVG sprite
 const sass = require('gulp-sass')(require('sass')); // Plugin for working with SCSS files
 const sourcemaps = require('gulp-sourcemaps');  // Plugin for creating source map files SCSS (for debugging)
+const autoprefixer = require('gulp-autoprefixer');  // Plugin for supporting old browsers
 
 // SVG Sprite configuration
 const spriteConfig = {
@@ -35,8 +36,12 @@ const createSprite = () => {
 // Function for working with SCSS files
 const compileSCSS = () => {
     return src('app/assets/scss/**/*.scss')         // Path to SCSS files
+        .pipe(sassGlob())                           // Support globals import 
         .pipe(sourcemaps.init())                    // Initialize sourcemaps
         .pipe(sass().on('error', sass.logError))    // Compile scss
+        .pipe(autoprefixer({                        // And vendor prefix
+            cascade: false
+        }))
         .pipe(sourcemaps.write())                   // Recording source maps
         .pipe(dest('app/assets/css'));              // Path to ready CSS files
 };
