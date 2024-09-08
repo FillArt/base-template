@@ -6,9 +6,9 @@ const cleanCSS  = require('gulp-clean-css');    // Minified CSS plugin
 const rename    = require('gulp-rename');       // Rename plugin
 const svgmin    = require('gulp-svgmin')        // Minified SVG plugin
 const svgSprite = require('gulp-svg-sprite');   // Plugin for create SVG sprite
-const sass = require('gulp-sass')(require('sass')); // Plugin for working with SCSS files
-const sourcemaps = require('gulp-sourcemaps');  // Plugin for creating source map files SCSS (for debugging)
-const autoprefixer = require('gulp-autoprefixer');  // Plugin for supporting old browsers
+const sass = require('gulp-sass')(require('sass'));     // Plugin for working with SCSS files
+const sourcemaps    = require('gulp-sourcemaps');       // Plugin for creating source map files SCSS (for debugging)
+const autoprefixer  = require('gulp-autoprefixer');     // Plugin for supporting old browsers
 
 // SVG Sprite configuration
 const spriteConfig = {
