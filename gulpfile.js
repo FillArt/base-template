@@ -22,7 +22,7 @@ const spriteConfig = {
 
 // Function for optimization and creation of sprite
 const createSprite = () => {
-    return src('app/assets/svg/*.svg')  // Path to SVG files
+    return src('app/svg/*.svg')  // Path to SVG files
         .pipe(svgmin({                  // Use svgmin for optimization
             plugins: [
                 { removeViewBox: false },
@@ -35,7 +35,7 @@ const createSprite = () => {
 
 // Function for working with SCSS files
 const compileSCSS = () => {
-    return src('app/assets/scss/**/*.scss')         // Path to SCSS files
+    return src('app/scss/**/*.scss')         // Path to SCSS files
         .pipe(sassGlob())                           // Support globals import 
         .pipe(sourcemaps.init())                    // Initialize sourcemaps
         .pipe(sass().on('error', sass.logError))    // Compile scss
@@ -43,13 +43,13 @@ const compileSCSS = () => {
             cascade: false
         }))
         .pipe(sourcemaps.write())                   // Recording source maps
-        .pipe(dest('app/assets/css'));              // Path to ready CSS files
+        .pipe(dest('app/css'));              // Path to ready CSS files
 };
 
 
 // Function to minify CSS files
 const minifyCSS = () => {
-    return src('app/assets/css/*.css')      // Path to CSS source files
+    return src('app/css/*.css')      // Path to CSS source files
         .pipe(concat('styles.css'))         // Concatenates all CSS files into one file
         .pipe(cleanCSS())                   // Minified CSS
         .pipe(rename({ suffix: '.min' }))   // Renames CSS files
