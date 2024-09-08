@@ -5,7 +5,9 @@ const concat    = require('gulp-concat');       // Merge files into one
 const cleanCSS  = require('gulp-clean-css');    // Minified CSS plugin
 const rename    = require('gulp-rename');       // Rename plugin
 const svgmin    = require('gulp-svgmin')        // Minified SVG plugin
-const svgSprite = require('gulp-svg-sprite');   // Create SVG sprite
+const svgSprite = require('gulp-svg-sprite');   // Plugin for create SVG sprite
+const sass = require('gulp-sass')(require('sass')); // Plugin for working with SCSS files
+const sourcemaps = require('gulp-sourcemaps');  // Plugin for creating source map files SCSS (for debugging)
 
 // SVG Sprite configuration
 const spriteConfig = {
@@ -27,8 +29,17 @@ const createSprite = () => {
             ]
         }))
         .pipe(svgSprite(spriteConfig))  // Create SVG sprite
-        .pipe(dest('dist/svg')); // Путь к выходной директории
+        .pipe(dest('dist/svg'));        // Path to output directory
 }
+
+// Function for working with SCSS files
+const compileSCSS = () => {
+    return src('app/assets/scss/**/*.scss')         // Path to SCSS files
+        .pipe(sourcemaps.init())                    // Initialize sourcemaps
+        .pipe(sass().on('error', sass.logError))    // Compile scss
+        .pipe(sourcemaps.write())                   // Recording source maps
+        .pipe(dest('app/assets/css'));              // Path to ready CSS files
+};
 
 
 // Function to minify CSS files
@@ -41,12 +52,8 @@ const minifyCSS = () => {
 }
 
 // Task function
-const testTask = series(minifyCSS);         // Test task
+const testTask = series(compileSCSS, minifyCSS);         // Test task
 
-// Watch task
-function watchFiles() { 
-    watch('src/css/*.css', minifyCSS);
-}
 
 exports.default = testTask;
-exports.createSprite = createSprite;
+exports.createSprite = createSprite; // For SVG sprite
