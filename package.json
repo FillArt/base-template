@@ -42,5 +42,11 @@
     "imagemin-optipng": "^8.0.0",
     "pug": "^3.0.3",
     "sass": "^1.78.0"
+  },
+  "dependencies": {
+    "@babel/core": "^7.25.2",
+    "@babel/preset-env": "^7.25.4",
+    "gulp-babel": "^8.0.0",
+    "gulp-uglify": "^3.0.2"
   }
 }

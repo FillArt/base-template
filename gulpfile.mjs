@@ -19,6 +19,8 @@ import imagemin from 'gulp-imagemin';
 import imageminMozjpeg from 'imagemin-mozjpeg';
 import imageminOptipng from 'imagemin-optipng'
 import fontmin from 'gulp-fontmin';
+import babel from 'gulp-babel';
+import uglify from 'gulp-uglify';
 
 // ** Setting SCSS with compiler Sass
 const sassCompiler = gulpSass(sass);
@@ -45,98 +47,115 @@ const paths = {
     CSS: {
         src: 'app/css/*.css',
         dest: 'dist/css'
+    },
+    JS: {
+        src: 'app/js/**/*.js',
+        dest: 'dist/js' 
     }
   };
 
 // ** Task for compiling PUG to HTML
 export const compilePug = () => {
-    return gulp.src(paths.PUG.src)                      // Path to the directory with PUG files
-        .pipe(plumber({                                 // If happens to be error
+    return gulp.src(paths.PUG.src)                          // Path to the directory with PUG files
+        .pipe(plumber({                                     // If happens to be error
             errorHandler: notify.onError({
                 title: 'Pug Error',
                 message: 'Error: <%= error.message %>'
             })
         }))
 
-        .pipe(pug({                                     // Nice alignment
+        .pipe(pug({                                         // Nice alignment
             pretty: true
         }))
     
-        .pipe(gulp.dest(paths.PUG.dest))                // Path to destination folder
+        .pipe(gulp.dest(paths.PUG.dest))                    // Path to destination folder
   }
 
 
 // ** Task for compiling SCSS to CSS
-export function compileSCSS() {
-    return gulp.src(paths.SCSS.src)                     // Path to the directory with SCSS files
-        .pipe(sassGlob())                               // Support globals import
-        .pipe(sourcemaps.init())                        // Initialize sourcemaps
-        .pipe(plumber({                                 // If happens to be error
+export const compileSCSS = () => {
+    return gulp.src(paths.SCSS.src)                         // Path to the directory with SCSS files
+        .pipe(sassGlob())                                   // Support globals import
+        .pipe(sourcemaps.init())                            // Initialize sourcemaps
+        .pipe(plumber({                                     // If happens to be error
             errorHandler: notify.onError({
                 title: 'SCSS Error',
                 message: 'Error: <%= error.message %>'
             })
         }))
-        .pipe(sassCompiler({ outputStyle: 'expanded' })) // Compile SCSS with Sass files
-        .pipe(postcss([autoprefixer()]))                 // Add Autoprefixer
-        .pipe(concat('styles.css'))                      // Concatenate all CSS files into one
-        .pipe(sourcemaps.write())                        // Recording source maps  
-        .pipe(gulp.dest(paths.SCSS.dest))                // Path to destination folder
+        .pipe(sassCompiler({ outputStyle: 'expanded' }))    // Compile SCSS with Sass files
+        .pipe(postcss([autoprefixer()]))                    // Add Autoprefixer
+        .pipe(concat('styles.css'))                         // Concatenate all CSS files into one
+        .pipe(sourcemaps.write())                           // Recording source maps  
+        .pipe(gulp.dest(paths.SCSS.dest))                   // Path to destination folder
   }
   
 // ** Task for minify CSS files
 const minifyCSS = () => {
-    return src(paths.CSS.src)                            // Path to CSS source files
-        .pipe(cleanCSS())                                // Minified CSS
-        .pipe(rename({ suffix: '.min' }))                // Renames CSS files
-        .pipe(dest(paths.CSS.dest));                     // Path to CSS update files
+    return src(paths.CSS.src)                               // Path to CSS source files
+        .pipe(cleanCSS())                                   // Minified CSS
+        .pipe(rename({ suffix: '.min' }))                   // Renames CSS files
+        .pipe(dest(paths.CSS.dest));                        // Path to CSS update files
 }  
 
 // ** Task for minifying SVG and creating a sprite
-export function svgMinifyAndSprite() {
-    return gulp.src(paths.svg.src)                       // Path to SVG source files
-      .pipe(svgmin())                                    // Minified SVG
-      .pipe(svgstore({ inlineSvg: true }))               // Make sprite
-      .pipe(rename('sprite.svg'))                        // Rename
-      .pipe(gulp.dest(paths.svg.dest))                   // Path to SVG sprite update
+export const svgMinifyAndSprite = () => {
+    return gulp.src(paths.svg.src)                          // Path to SVG source files
+      .pipe(svgmin())                                       // Minified SVG
+      .pipe(svgstore({ inlineSvg: true }))                  // Make sprite
+      .pipe(rename('sprite.svg'))                           // Rename
+      .pipe(gulp.dest(paths.svg.dest))                      // Path to SVG sprite update
 }
 
 // ** Task for optimization images
-export function optimizeImages() {
-    return gulp.src(paths.images.src, { encoding: false })// Path to all images
-        .pipe(plumber())                                  // Error handler  
-        .pipe(imagemin([                                  // Image optimization
+export const optimizeImages = () => {
+    return gulp.src(paths.images.src, { encoding: false })  // Path to all images
+        .pipe(plumber())                                    // Error handler  
+        .pipe(imagemin([                                    // Image optimization
             imageminMozjpeg({ quality: 75, progressive: true }),
             imageminOptipng({ optimizationLevel: 5 }),
         ]))
-        .pipe(gulp.dest(paths.images.dest));              // Path to optimization images
+        .pipe(gulp.dest(paths.images.dest));                // Path to optimization images
 }
 
 // ** Task for converting to WebP
-export function convertToWebp() {
-    return gulp.src(paths.images.src, { encoding: false }) // Path to all images
-        .pipe(plumber())                                   // Error handler
-        .pipe(webp({                                       // Convert to WebP
+export const convertToWebp = () => {
+    return gulp.src(paths.images.src, { encoding: false })  // Path to all images
+        .pipe(plumber())                                    // Error handler
+        .pipe(webp({                                        // Convert to WebP
             quality: 75,
             lossless: true
         }))
-        .pipe(gulp.dest(paths.images.dest));               // Path to WebP images
+        .pipe(gulp.dest(paths.images.dest));                // Path to WebP images
 }
 
 // ** Task for working with fonts
-export function minificatorFonts() {
-    return gulp.src('app/fonts/**/*.*')
-      .pipe(fontmin())
-      .pipe(gulp.dest('dist/fonts'));
+export const minificatorFonts = () => {
+    return gulp.src('app/fonts/**/*.*')                     // Path to all fonts
+      .pipe(fontmin())                                      // Minificator fonts
+      .pipe(gulp.dest('dist/fonts'));                       // Path to clear fonts 
 }
+
+// ** Task for working with JS files
+export const scripts = () => {
+    return gulp.src(paths.JS.src)                           // Path to all js files
+      .pipe(sourcemaps.init())                              // Init sourcemap for debug
+      .pipe(babel({
+        presets: ['@babel/preset-env']                      // Transpiling modern JavaScript
+      }))
+      .pipe(concat('main.js'))                              // Concatenation of all JavaScript files into one
+      .pipe(uglify())                                       // JavaScript Minification
+      .pipe(sourcemaps.write('.'))                          // Recording source code maps
+      .pipe(gulp.dest(paths.JS.dest));                      // Path to output files
+  };
 
 // ** Watcher for project
   export function watchFiles() {
-    gulp.watch(paths.PUG.src, compilePug);          // Watch PUG files for changes
-    gulp.watch(paths.SCSS.src, compileSCSS);        // Watch SCSS files for changes
-    gulp.watch(paths.svg.src, svgMinifyAndSprite);  // Watch SVG files for changes
-    gulp.watch(paths.images.src, optimizeImages);   // Watch images for changes and optimize them
-    gulp.watch(paths.images.src, convertToWebp);    // Watch images for changes and convert to WebP format
+    gulp.watch(paths.PUG.src, compilePug);                  // Watch PUG files for changes
+    gulp.watch(paths.SCSS.src, compileSCSS);                // Watch SCSS files for changes
+    gulp.watch(paths.svg.src, svgMinifyAndSprite);          // Watch SVG files for changes
+    gulp.watch(paths.images.src, optimizeImages);           // Watch images for changes and optimize them
+    gulp.watch(paths.images.src, convertToWebp);            // Watch images for changes and convert to WebP format
 }
 
-export default gulp.series(minificatorFonts, watchFiles);
+export default gulp.series(watchFiles);
