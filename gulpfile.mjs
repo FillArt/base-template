@@ -17,7 +17,8 @@ import svgstore from 'gulp-svgstore';
 import webp from 'gulp-webp';
 import imagemin from 'gulp-imagemin';
 import imageminMozjpeg from 'imagemin-mozjpeg';
-import imageminOptipng from 'imagemin-optipng';
+import imageminOptipng from 'imagemin-optipng'
+import fontmin from 'gulp-fontmin';
 
 // ** Setting SCSS with compiler Sass
 const sassCompiler = gulpSass(sass);
@@ -100,7 +101,7 @@ export function svgMinifyAndSprite() {
       .pipe(gulp.dest(paths.svg.dest))                   // Path to SVG sprite update
 }
 
-// ** Function for optimization images
+// ** Task for optimization images
 export function optimizeImages() {
     return gulp.src(paths.images.src, { encoding: false })// Path to all images
         .pipe(plumber())                                  // Error handler  
@@ -111,7 +112,7 @@ export function optimizeImages() {
         .pipe(gulp.dest(paths.images.dest));              // Path to optimization images
 }
 
-// ** Function for converting to WebP
+// ** Task for converting to WebP
 export function convertToWebp() {
     return gulp.src(paths.images.src, { encoding: false }) // Path to all images
         .pipe(plumber())                                   // Error handler
@@ -120,6 +121,13 @@ export function convertToWebp() {
             lossless: true
         }))
         .pipe(gulp.dest(paths.images.dest));               // Path to WebP images
+}
+
+// ** Task for working with fonts
+export function minificatorFonts() {
+    return gulp.src('app/fonts/**/*.*')
+      .pipe(fontmin())
+      .pipe(gulp.dest('dist/fonts'));
 }
 
 // ** Watcher for project
@@ -131,4 +139,4 @@ export function convertToWebp() {
     gulp.watch(paths.images.src, convertToWebp);    // Watch images for changes and convert to WebP format
 }
 
-export default gulp.series(compilePug, compileSCSS, minifyCSS, svgMinifyAndSprite, optimizeImages, convertToWebp, watchFiles);
+export default gulp.series(minificatorFonts, watchFiles);
