@@ -42,9 +42,8 @@ const paths = {
         src: 'app/pug/**/*.pug',
         dest: 'dist'
     },
-    // !! Temporary - here should be main file scss.
     SCSS: {
-        src: 'app/scss/**/*.scss',
+        src: 'app/scss/main.scss',
         dest: 'app/css'
     },
     CSS: {
