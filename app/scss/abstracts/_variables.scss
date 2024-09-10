@@ -33,3 +33,8 @@ $text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);     // Subtle shadow applied to te
 $container-width: 1200px;                           // Maximum width for the main container or wrapper.
 $max-width: 100%;                                   // Ensures elements do not exceed the container width.
 $min-height: 100vh;                                 // Minimum height to cover the full viewport height.
+
+// Media queries
+$tablet: 768px;
+$large: 1024px;
+$desktop: 1280px;
