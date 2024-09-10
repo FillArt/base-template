@@ -1,26 +1,30 @@
 // ** Import abstracts
-// @import 'abstracts/variables';
-// @import 'abstracts/mixins';
-// @import 'abstracts/functions';
+@import 'abstracts/variables';   // Variables for colors, fonts, spacing, etc.
+@import 'abstracts/mixins';      // Mixins for reusable style patterns
+@import 'abstracts/functions';   // Functions for calculations and custom operations
 
 // Import base styles
-// @import 'base/reset';
-// @import 'base/typography';
-// @import 'base/base';
+@import 'base/reset';            // CSS reset or normalization
+@import 'base/typography';       // Typography settings (fonts, line-height, etc.)
+@import 'base/base';             // General base styles for elements
 
 // Import layout
-// @import 'layout/header';
-// @import 'layout/footer';
-// @import 'layout/grid';
-// @import 'layout/sidebar';
+@import 'layout/header';         // Styles for the header
+@import 'layout/footer';         // Styles for the footer
+@import 'layout/grid';           // Grid system and layout helpers
+@import 'layout/sidebar';        // Styles for the sidebar
 
 // Import components
-// @import 'components/buttons';
-// @import 'components/cards';
-// @import 'components/modal';
+@import 'components/buttons';    // Styles for buttons
+@import 'components/cards';      // Styles for card components
+@import 'components/modal';      // Styles for forms
 
 // Import pages
-// @import 'pages/home';
+@import 'pages/home';            // Styles specific to the home page
 
 // Import themes
-// @import 'themes/default';
+@import 'themes/default';        // Default theme styles
+
+// Importing vendor styles
+// @import 'vendors/bootstrap';     // Bootstrap overrides or custom styles
+// @import 'vendors/slick';         // Slick carousel styles or other third-party libraries
