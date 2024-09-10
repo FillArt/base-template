@@ -24,6 +24,8 @@ import uglify from 'gulp-uglify';
 
 // ** Setting SCSS with compiler Sass
 const sassCompiler = gulpSass(sass);
+// ** BrowserSync instance
+const sync = browserSync.create();
 
 // ** Path to the directory
 const paths = {
@@ -69,6 +71,7 @@ export const compilePug = () => {
         }))
     
         .pipe(gulp.dest(paths.PUG.dest))                    // Path to destination folder
+        .pipe(sync.stream());                               // Inject changes to browser
   }
 
 
@@ -88,6 +91,7 @@ export const compileSCSS = () => {
         .pipe(concat('styles.css'))                         // Concatenate all CSS files into one
         .pipe(sourcemaps.write())                           // Recording source maps  
         .pipe(gulp.dest(paths.SCSS.dest))                   // Path to destination folder
+        .pipe(sync.stream());                               // Inject changes to browser
   }
   
 // ** Task for minify CSS files
@@ -146,7 +150,8 @@ export const scripts = () => {
       .pipe(concat('main.js'))                              // Concatenation of all JavaScript files into one
       .pipe(uglify())                                       // JavaScript Minification
       .pipe(sourcemaps.write('.'))                          // Recording source code maps
-      .pipe(gulp.dest(paths.JS.dest));                      // Path to output files
+      .pipe(gulp.dest(paths.JS.dest))                       // Path to output files
+      .pipe(sync.stream());                                 // Inject changes to browser
   };
 
 // ** Watcher for project
