@@ -5,7 +5,7 @@
 
 // ** Font Family **
 body {
-    font-family: 'Helvetica Neue', Arial, sans-serif; // Default font family
+    font-family: $base-font-family;
   }
   
   // ** Font Sizes **
@@ -51,34 +51,34 @@ body {
   // ** Lists **
   ul, ol {
     margin: 20px 0;
-    padding: 0 0 0 10px; // Indentation for list items
+    padding: 0 0 0 10px;
   }
   
   ul {
-    list-style-type: disc; // Bulleted list style
+    list-style-type: disc;
   }
   
   ol {
-    list-style-type: decimal; // Numbered list style
+    list-style-type: decimal;
   }
   
   strong {
-    font-weight: bold; // Bold text
+    font-weight: bold;
   }
   
   // ** Inline Code and Code Blocks **
   code {
-    font-family: 'Courier New', monospace; // Monospaced font for code
-    background-color: $background-color; // Light background for code
-    padding: 0.2em 0.4em; // Padding for readability
-    border-radius: $border-radius // Rounded corners
+    font-family: 'Courier New', monospace;
+    background-color: $background-color; 
+    padding: 0.2em 0.4em;
+    border-radius: $border-radius;
   }
   
   pre {
-    font-family: 'Courier New', monospace; // Monospaced font for code blocks
-    background-color: $background-color; // Light background for code blocks
-    padding: 1em; // Padding for readability
-    border-radius: $border-radius; // Rounded corners
-    overflow-x: auto; // Horizontal scroll for overflow
-    white-space: pre-wrap; // Preserve whitespace
+    font-family: 'Courier New', monospace; 
+    background-color: $background-color;
+    padding: 1em;
+    border-radius: $border-radius;
+    overflow-x: auto;
+    white-space: pre-wrap;
   }
