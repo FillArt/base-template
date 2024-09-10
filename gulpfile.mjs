@@ -21,6 +21,7 @@ import imageminOptipng from 'imagemin-optipng'
 import fontmin from 'gulp-fontmin';
 import babel from 'gulp-babel';
 import uglify from 'gulp-uglify';
+import browserSync from 'browser-sync';
 
 // ** Setting SCSS with compiler Sass
 const sassCompiler = gulpSass(sass);
@@ -98,7 +99,7 @@ export const compileSCSS = () => {
 const minifyCSS = () => {
     return src(paths.CSS.src)                               // Path to CSS source files
         .pipe(cleanCSS())                                   // Minified CSS
-        .pipe(rename({ suffix: '.min' }))                   // Renames CSS files
+        // .pipe(rename({ suffix: '.min' }))                // Renames CSS files
         .pipe(dest(paths.CSS.dest));                        // Path to CSS update files
 }  
 
@@ -163,4 +164,42 @@ export const scripts = () => {
     gulp.watch(paths.images.src, convertToWebp);            // Watch images for changes and convert to WebP format
 }
 
-export default gulp.series(watchFiles);
+// ** Task for development
+export const development = series(
+    compilePug,
+    compileSCSS,
+    svgMinifyAndSprite,
+    optimizeImages,
+    convertToWebp,
+    scripts,
+    minificatorFonts,
+    function serve() {
+        sync.init({
+            server: {
+                baseDir: 'dist'
+            },
+            notify: true
+        });
+
+        watch(paths.PUG.src, compilePug);
+        watch(paths.SCSS.src, compileSCSS);
+        watch(paths.svg.src, svgMinifyAndSprite);
+        watch(paths.images.src, optimizeImages);
+        watch(paths.images.src, convertToWebp);
+        watch(paths.JS.src, scripts);
+    }
+);
+
+// ** Task for final build
+export const build = series(
+    compilePug,
+    compileSCSS,
+    minifyCSS,
+    svgMinifyAndSprite,
+    optimizeImages,
+    convertToWebp,
+    scripts,
+    minificatorFonts
+);
+
+export default development;
