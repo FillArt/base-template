@@ -2,3 +2,34 @@
     Goal: Storing all variables that will be used in the project.
     Content: Variables for colors, fonts, sizes, padding, and other repeating values.
 */
+
+// Colors
+$primary-color: #3498db;                         // Primary color used for accents, buttons, etc.
+$secondary-color: #2ecc71;                       // Secondary color used for backgrounds or complementary elements.
+$text-color: #333;                               // Default text color.
+$background-color: #fff;                         // Default background color.
+$border-color: #ddd;                             // Default border color.
+
+// Fonts
+$base-font-family: 'Arial, sans-serif';             // Main font used throughout the site.
+$heading-font-family: 'Georgia, serif';             // Font used for headings.
+$base-font-size: 16px;                              // Base font size for body text.
+$heading-font-size: 24px;                           // Base font size for headings.
+
+// Spacing
+$base-spacing: 16px;                                // Default spacing used for margins and paddings.
+$small-spacing: 8px;                                // Smaller spacing used for tight areas.
+$large-spacing: 32px;                               // Larger spacing used for more substantial gaps.
+
+// Borders
+$border-radius: 4px;                                // Standard border-radius used to round corners of elements.
+$border-width: 1px;                                 // Default width for borders.
+
+// Shadows
+$box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);      // Default shadow applied to boxes and containers.
+$text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);     // Subtle shadow applied to text for emphasis.
+
+// Dimensions
+$container-width: 1200px;                           // Maximum width for the main container or wrapper.
+$max-width: 100%;                                   // Ensures elements do not exceed the container width.
+$min-height: 100vh;                                 // Minimum height to cover the full viewport height.
