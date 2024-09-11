@@ -39,7 +39,7 @@ const paths = {
       dest: 'dist/img'  
     },
     PUG: {
-        src: 'app/pug/**/*.pug',
+        src: 'app/pug/pages/*.pug',
         dest: 'dist'
     },
     SCSS: {

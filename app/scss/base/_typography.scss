@@ -10,38 +10,62 @@ body {
   
   // ** Font Sizes **
   h1 {
-    @include font-size(52px, 58, 1.2);
+    // @include font-size(52px, 58, 1.2);
+    @include font-size(12px);            // Set font size in rem
+    @include line-height(18px, 12px);   // Set line-height (unitless value)
+    @include letter-spacing(2px);       // Set letter-spacing in rem
   }
   
   h2 {
-    @include font-size(42px, 48, 1.2);
+    // @include font-size(42px, 48, 1.2);
+    @include font-size(12px);            // Set font size in rem
+    @include line-height(18px, 12px);   // Set line-height (unitless value)
+    @include letter-spacing(2px);       // Set letter-spacing in rem
   }
   
   h3 {
-    @include font-size(32px, 38, 1.2);
+    // @include font-size(32px, 38, 1.2);
+    @include font-size(12px);            // Set font size in rem
+    @include line-height(18px, 12px);   // Set line-height (unitless value)
+    @include letter-spacing(2px);       // Set letter-spacing in rem
   }
   
   h4 {
-    @include font-size(22px, 28, 1.2);
+    // @include font-size(22px, 28, 1.2);
+    @include font-size(12px);            // Set font size in rem
+    @include line-height(18px, 12px);   // Set line-height (unitless value)
+    @include letter-spacing(2px);       // Set letter-spacing in rem
   }
   
   h5 {
-    @include font-size(12px, 18, 1.2);
+    // @include font-size(12px, 18, 1.2);
+    @include font-size(12px);            // Set font size in rem
+    @include line-height(18px, 12px);   // Set line-height (unitless value)
+    @include letter-spacing(2px);       // Set letter-spacing in rem
   }
   
   h6 {
-    @include font-size(10px, 8, 1.2);
+    // @include font-size(10px, 8, 1.2);
+    @include font-size(12px);            // Set font size in rem
+    @include line-height(18px, 12px);   // Set line-height (unitless value)
+    @include letter-spacing(2px);       // Set letter-spacing in rem
   }
   
   // ** Paragraphs **
   p {
-    @include font-size(16px, 18, 1.2);
+    // @include font-size(16px, 18, 1.2);
+    @include font-size(12px);            // Set font size in rem
+    @include line-height(18px, 12px);   // Set line-height (unitless value)
+    @include letter-spacing(2px);       // Set letter-spacing in rem
     margin: 0 0 20px 0;
   }
   
   // ** Blockquotes **
   blockquote {
-    @include font-size(20px, 22, 1.2);
+    // @include font-size(20px, 22, 1.2);
+    @include font-size(12px);            // Set font size in rem
+    @include line-height(18px, 12px);   // Set line-height (unitless value)
+    @include letter-spacing(2px);       // Set letter-spacing in rem
     margin: 0 0 20px 0;
     padding: 0.5em 1em;
     border-left: $border-width solid $border-color;
