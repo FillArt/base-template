@@ -3,7 +3,7 @@
     Content: Styles for links, buttons, tables, lists and other elements.
 */
 
-@include font-face(Roboto, "./assets/Roboto", normal, normal);
+// @include font-face(Roboto, "./assets/Roboto", normal, normal);
 
 // ** Container
 .container {
@@ -11,7 +11,7 @@
     width: 100%;
     margin: 0 auto;
     padding: 0 10px;
-  }
+}
 
 
 // ** Global Styles

@@ -40,10 +40,13 @@ const paths = {
     },
     PUG: {
         src: 'app/pug/pages/*.pug',
+        allSrc: 'app/pug/**/*.pug', // Путь ко всем Pug-файлам, включая поддиректории
+        // allSrc: 'app/pug/**/**/*.pug',
         dest: 'dist'
     },
     SCSS: {
         src: 'app/scss/main.scss',
+        demoSrc: 'app/scss/demo.scss',
         dest: 'app/css'
     },
     CSS: {
@@ -93,9 +96,26 @@ export const compileSCSS = () => {
         .pipe(gulp.dest(paths.SCSS.dest))                   // Path to destination folder
         .pipe(sync.stream());                               // Inject changes to browser
   }
+
+  export const demoSCSS = () => {
+    return gulp.src(paths.SCSS.demoSrc)                         // Path to the directory with SCSS files
+        .pipe(sassGlob())                                   // Support globals import
+        .pipe(sourcemaps.init())                            // Initialize sourcemaps
+        .pipe(plumber({                                     // If happens to be error
+            errorHandler: notify.onError({
+                title: 'SCSS Demo Error',
+                message: 'Error: <%= error.message %>'
+            })
+        }))
+        .pipe(sassCompiler({ outputStyle: 'expanded' }))    // Compile SCSS with Sass files
+        .pipe(postcss([autoprefixer()]))                    // Add Autoprefixer
+        .pipe(sourcemaps.write())                           // Recording source maps  
+        .pipe(gulp.dest(paths.SCSS.dest))                   // Path to destination folder
+        .pipe(sync.stream());                               // Inject changes to browser
+  }
   
 // ** Task for minify CSS files
-const minifyCSS = () => {
+export const minifyCSS = () => {
     return src(paths.CSS.src)                               // Path to CSS source files
         .pipe(cleanCSS())                                   // Minified CSS
         // .pipe(rename({ suffix: '.min' }))                // Renames CSS files
@@ -155,9 +175,10 @@ export const scripts = () => {
   };
 
 // ** Watcher for project
-  export function watchFiles() {
-    gulp.watch(paths.PUG.src, compilePug);                  // Watch PUG files for changes
+export function watchFiles() {
+    gulp.watch(paths.PUG.allSrc, compilePug);               // Watch PUG files for changes
     gulp.watch(paths.SCSS.src, compileSCSS);                // Watch SCSS files for changes
+    gulp.watch(paths.SCSS.demoSrc, demoSCSS);                // Watch SCSS files for changes
     gulp.watch(paths.svg.src, svgMinifyAndSprite);          // Watch SVG files for changes
     gulp.watch(paths.images.src, optimizeImages);           // Watch images for changes and optimize them
     gulp.watch(paths.images.src, convertToWebp);            // Watch images for changes and convert to WebP format
@@ -167,6 +188,8 @@ export const scripts = () => {
 export const development = series(
     compilePug,
     compileSCSS,
+    demoSCSS,
+    minifyCSS,
     svgMinifyAndSprite,
     optimizeImages,
     convertToWebp,
@@ -180,8 +203,9 @@ export const development = series(
             notify: true
         });
 
-        watch(paths.PUG.src, compilePug);
+        watch(paths.PUG.allSrc, compilePug);
         watch(paths.SCSS.src, compileSCSS);
+        watch(paths.SCSS.demoSrc, demoSCSS);
         watch(paths.svg.src, svgMinifyAndSprite);
         watch(paths.images.src, optimizeImages);
         watch(paths.images.src, convertToWebp);

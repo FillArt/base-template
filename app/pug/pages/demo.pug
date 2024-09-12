@@ -1,15 +1,15 @@
-extends ../layouts/default.pug
+extends ../layouts/demo.pug
 
 block head
-//- Additional css or js files
+  link(rel="stylesheet" href="css/demo.css")
 
 block preload
 //-   link(rel="preload" href="/path/to/resource.css" as="style")
 //-   link(rel="preload" href="/path/to/resource.js" as="script")
 
 block content
-  h2 Welcome to the Home Page
-  p This is the content of the home page.
+  include ../sections/demo/demo-typography.pug
+
 
 block scripts
 //- Additional js files
