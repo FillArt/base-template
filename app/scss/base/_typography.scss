@@ -97,14 +97,16 @@ body {
   // ** Inline Code and Code Blocks **
   code {
     font-family: 'Courier New', monospace;
-    background-color: $background-color; 
+    background-color: black;
+    color: white;
     padding: 0.2em 0.4em;
     border-radius: $border-radius;
   }
   
   pre {
     font-family: 'Courier New', monospace; 
-    background-color: $background-color;
+    background-color: black;
+    color: white;
     padding: 1em;
     border-radius: $border-radius;
     overflow-x: auto;
