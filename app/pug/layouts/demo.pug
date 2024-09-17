@@ -43,7 +43,31 @@ html(lang="en")
     //- include ../components/header.pug
 
     // Main content of the page
-    main
+    main.demo
+     .demo-nav
+        h2 Typography
+        p Use typography to present your design and 
+          | content as clearly and efficiently as possible.
+
+        h4 Navigation
+        nav
+          ul
+            li
+              a(href="/") Typography
+            li
+              a(href="/") Test 
+            li
+              a(href="/") Testing
+              
+                
+     .demo-content
+        block content
+
+    // Include sidebar component
+    //- include../components/sidebar.pug
+
+    // Include pagination component
+    //- include../components/pagination.pug
       block content
 
     // Include footer component

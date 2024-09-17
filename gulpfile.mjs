@@ -45,7 +45,7 @@ const paths = {
         dest: 'dist'
     },
     SCSS: {
-        src: 'app/scss/main.scss',
+        src: 'app/scss/**/*.scss',
         demoSrc: 'app/scss/demo.scss',
         dest: 'app/css'
     },
@@ -98,7 +98,7 @@ export const compileSCSS = () => {
   }
 
   export const demoSCSS = () => {
-    return gulp.src(paths.SCSS.demoSrc)                         // Path to the directory with SCSS files
+    return gulp.src(paths.SCSS.demoSrc)                     // Path to the directory with SCSS files
         .pipe(sassGlob())                                   // Support globals import
         .pipe(sourcemaps.init())                            // Initialize sourcemaps
         .pipe(plumber({                                     // If happens to be error
@@ -204,8 +204,8 @@ export const development = series(
         });
 
         watch(paths.PUG.allSrc, compilePug);
-        watch(paths.SCSS.src, compileSCSS);
-        watch(paths.SCSS.demoSrc, demoSCSS);
+        watch(paths.SCSS.src, series(compileSCSS, minifyCSS));
+        watch(paths.SCSS.demoSrc, series(demoSCSS, minifyCSS));
         watch(paths.svg.src, svgMinifyAndSprite);
         watch(paths.images.src, optimizeImages);
         watch(paths.images.src, convertToWebp);

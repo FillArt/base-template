@@ -1,4 +1,43 @@
-.test {
-    color: red;
-    background: red;
+// ** Import abstracts
+@import 'abstracts/variables';   // Variables for colors, fonts, spacing, etc.
+@import 'abstracts/mixins';      // Mixins for reusable style patterns
+@import 'abstracts/functions';   // Functions for calculations and custom operations
+
+$navBackground: #00000014;
+
+.demo {
+    position: relative;
+    @include box(100vw, 100vh);
+    &-nav {
+        position: fixed;
+        @include box(100%);
+        max-width: 400px;
+        padding: 35px;
+        background: $navBackground;
+        & h2, & h4, & p, & li {
+            margin: 0 0 16px 0;
+        }
+    }
+
+    &-content {
+        width: calc(100% - 400px);
+        margin-left: auto;
+    }
+
+    &-typography {
+        padding: 50px 0 0 0;
+        &__item {
+            display: grid;
+            align-items: center;
+            grid-template-columns: 3fr 2fr 7fr;
+            border-bottom: 1px solid lightgrey ;
+            & > div {
+                padding: 16px;
+            }
+            &.title {
+                @include font-size(14px);
+                font-weight: bold;
+            }
+        }
+    }
 }
