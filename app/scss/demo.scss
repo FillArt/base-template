@@ -22,21 +22,91 @@ $navBackground: #00000014;
     &-content {
         width: calc(100% - 400px);
         margin-left: auto;
+
+        & h5, h4 {
+            padding:0 16px 40px 16px;
+            font-weight: bold;
+        }
+
+        & section {
+            margin: 0 0 40px 0;
+        }
     }
 
-    &-typography {
+    & .items {
         padding: 50px 0 0 0;
         &__item {
             display: grid;
             align-items: center;
-            grid-template-columns: 3fr 2fr 7fr;
-            border-bottom: 1px solid lightgrey ;
+            border-bottom: 1px solid lightgrey;
             & > div {
                 padding: 16px;
             }
-            &.title {
+            & .title {
                 @include font-size(14px);
                 font-weight: bold;
+            }
+        }
+    }
+
+    & .typography {
+        grid-template-columns: 3fr 1.5fr 6fr;
+    }
+
+    & .colors {
+        grid-template-columns: 1.5fr 1.5fr 9fr;
+        &.text {
+            &-primary {
+                color: $text-color;
+                & div > .example {
+                    @include box(16px);
+                    background: $text-color;
+                }
+            } 
+            &-secondary {
+                color: $text-secondary;
+                & div > .example {
+                    @include box(16px);
+                    background: $text-secondary;
+                }
+            } 
+            &-disabled{
+                color: $text-disabled;
+                & div > .example {
+                    @include box(16px);
+                    background: $text-disabled;
+                }
+            } 
+        }
+
+        &.main {
+            &-primary {
+                color: $primary-color;
+                & div > .example {
+                    @include box(16px);
+                    background: $primary-color;
+                }
+            }
+            &-secondary {
+                color: $secondary-color;
+                & div > .example {
+                    @include box(16px);
+                    background: $secondary-color;
+                }
+            }
+            &-background {
+                color: $background-color;
+                & div > .example {
+                    @include box(16px);
+                    background: $background-color;
+                }
+            }
+            &-border {
+                color: $border-color;
+                & div > .example {
+                    @include box(16px);
+                    background: $border-color;
+                }
             }
         }
     }
