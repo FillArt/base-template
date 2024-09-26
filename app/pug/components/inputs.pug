@@ -1,0 +1,26 @@
+mixin textInput(label, placeholder, name)
+  .input
+    input(type='text', name=name, id=name, placeholder=placeholder)
+    label(for=name) #{label}
+    
+mixin textareaInput(label, placeholder, name, rows= 4, cols= 20)
+  .input
+    textarea(name=name, id=name, placeholder=placeholder, rows=rows, cols= cols)
+    label(for=name) #{label}
+
+mixin selectInput(label, name, options)
+  .input
+      select(name=name, id=name)
+          each option in options
+              option(value=option.value) #{option.text}
+      label(for=name) #{label}
+
+mixin radioInput(name, id, value, label)
+  .radio
+    input.custom-radio(type='radio', name=name, id=id, value=value)
+    label(for=id) #{label}
+
+mixin checkboxInput(name, value, label)
+  input.custom-checkbox(type="checkbox" id=name name=name value=value)
+  label(for=name) #{label} 
+

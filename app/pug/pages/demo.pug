@@ -1,4 +1,5 @@
 extends ../layouts/demo.pug
+include ../components/inputs.pug
 
 block head
   link(rel="stylesheet" href="css/demo.css")
@@ -8,8 +9,9 @@ block preload
 //-   link(rel="preload" href="/path/to/resource.js" as="script")
 
 block content
-  //- include ../sections/demo/demo-typography.pug
+  include ../sections/demo/demo-typography.pug
   include ../sections/demo/demo-colors.pug
+  include ../sections/demo/demo-inputs.pug
 
 
 block scripts

@@ -10,8 +10,11 @@ $text-disabled: #00000061;                       // Disabled text color.
 
 $primary-color: #3498db;                         // Primary color used for accents, buttons, etc.
 $secondary-color: #2ecc71;                       // Secondary color used for backgrounds or complementary elements.
-$background-color: #ffa500;                         // Default background color.
-$border-color: #dd0b0b;                             // Default border color.
+$background-color: #ffa500;                      // Default background color.
+$border-color: #dd0b0b; 
+
+$input-background: #0000000f;                       // Default inuput backgroud.
+$input-label: #00000099;                            // Default inuput label.
 
 // Fonts
 $base-font-family: 'Arial, sans-serif';             // Main font used throughout the site.
