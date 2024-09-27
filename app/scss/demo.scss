@@ -143,4 +143,11 @@ $navBackground: #00000014;
             gap: 10px;
         }
     }
+
+    & .buttons {
+        grid-template-columns: 2fr 10fr;
+        & > div {
+            padding: 16px;
+        }
+    }
 }
