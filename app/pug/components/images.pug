@@ -12,7 +12,7 @@ mixin ceoImage(baseName, format, altText, width, height)
 mixin svgIcon(iconName, width, height)
     svg(width=width height=height)
         //- Using the <use> element to reference the icon in the sprite
-        use(xlink:href=`#${iconName}`)
+        use(xlink:href=`./img/sprite.svg#${iconName}`)
 
 //- Call the mixin to display an icon named 'icon-name' with dimensions 24x24 pixels
 //- +svgIcon('icon-name', 24, 24)  

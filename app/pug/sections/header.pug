@@ -1,7 +1,9 @@
 header
   .header-container.container
     .header-logo
-      | Logo
+      a(href="#")
+        +svgIcon('accelerate', 35, 35) 
+        
       // PHP code to display the site name using bloginfo('name');
 
     +mainNavigation('header-navigation', [
