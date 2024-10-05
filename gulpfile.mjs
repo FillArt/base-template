@@ -156,7 +156,7 @@ export const convertToWebp = () => {
 // ** Task for working with fonts
 export const minificatorFonts = () => {
     return gulp.src('app/fonts/**/*.*')                     // Path to all fonts
-      .pipe(fontmin())                                      // Minificator fonts
+    //   .pipe(fontmin())                                      // Minificator fonts
       .pipe(gulp.dest('dist/fonts'));                       // Path to clear fonts 
 }
 

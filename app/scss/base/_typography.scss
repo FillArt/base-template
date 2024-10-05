@@ -3,6 +3,9 @@
     Contents: Fonts, font sizes, line spacing, heading and paragraph styles.
 */
 
+@include font-face(Roboto, "./fonts/Roboto/Roboto-Regular", normal, normal);
+@include font-face(Roboto, "./fonts/Roboto/Roboto-Bold", bold, normal);
+
 // ** Font Family **
 body {
     font-family: $base-font-family;
