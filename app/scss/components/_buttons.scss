@@ -23,3 +23,17 @@ button {
       cursor: not-allowed;
     }
   }
+
+  .link-button {
+    padding: 0.5rem 1rem;
+    background-color: $secondary-color;
+    color: #fff;
+    border: none;
+    border-radius: $border-radius;
+    text-decoration: none;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: $primary-color;
+    }
+  }

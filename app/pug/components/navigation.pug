@@ -1,0 +1,9 @@
+mixin mainNavigation(className, arrayItems)
+    nav(class= className)
+      // PHP code for the navigation menu
+      // Example: wp_nav_menu(array('theme_location' => 'primary', 'container' => false, 'items_wrap' => '<ul class="nav-list">%3$s</ul>',));
+      
+      ul.nav-list
+        each item in arrayItems
+            li
+                a(href=item.link) #{item.title}

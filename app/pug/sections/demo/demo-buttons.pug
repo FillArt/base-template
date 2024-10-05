@@ -1,4 +1,4 @@
-.items
+section#buttons.items
     .container
         section
             h4.demo-title Path to file - <code> app\scss\components\_buttons.scss</code>
@@ -9,6 +9,11 @@
                     span Description
             .items__item.buttons
                 div
-                    button Test
+                    button Button
                 div
                     span Main Button
+            .items__item.buttons
+                div
+                    +linkButton('Link Button', '#', 'Title', 'link-button')
+                div
+                    span Link Button

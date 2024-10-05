@@ -40,28 +40,10 @@ html(lang="en")
 
   body
     // Include header component
-    //- include ../components/header.pug
+    include ../sections/header.pug
 
     // Main content of the page
-    main.demo
-     .demo-nav
-        h2 Typography
-        p Use typography to present your design and 
-          | content as clearly and efficiently as possible.
-
-        h4 Navigation
-        nav
-          ul
-            li
-              a(href="/") Typography
-            li
-              a(href="/") Color 
-            li
-              a(href="/") Input
-            li
-              a(href="/") Button
-              
-                
+    main.demo        
      .demo-content
         block content
 
@@ -73,7 +55,7 @@ html(lang="en")
       block content
 
     // Include footer component
-    //- include ../components/footer.pug
+    include ../sections/footer.pug
 
     // Link to main JavaScript file
     script(src="/js/main.js")
