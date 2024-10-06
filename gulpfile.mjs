@@ -28,6 +28,17 @@ const sassCompiler = gulpSass(sass);
 // ** BrowserSync instance
 const sync = browserSync.create();
 
+// ** Path to all JS files
+const jsFiles = [
+    'app/js/map/leaflet.js',
+    'app/js/map/config.js',
+    'app/js/main.js',
+]
+
+const cssFilesForJS = [
+    'app/js/map/leaflet.css'
+]
+
 // ** Path to the directory
 const paths = {
     images: {
@@ -51,10 +62,11 @@ const paths = {
     },
     CSS: {
         src: 'app/css/*.css',
+        JsLib: cssFilesForJS,
         dest: 'dist/css'
     },
     JS: {
-        src: 'app/js/**/*.js',
+        src: jsFiles,
         dest: 'dist/js' 
     }
   };
@@ -120,7 +132,15 @@ export const minifyCSS = () => {
         .pipe(cleanCSS())                                   // Minified CSS
         // .pipe(rename({ suffix: '.min' }))                // Renames CSS files
         .pipe(dest(paths.CSS.dest));                        // Path to CSS update files
+}
+
+export const CssForJs = () => {
+    return src(paths.CSS.JsLib)                               // Path to CSS source files
+        .pipe(cleanCSS())                                   // Minified CSS
+        // .pipe(rename({ suffix: '.min' }))                // Renames CSS files
+        .pipe(dest(paths.CSS.dest));                        // Path to CSS update files
 }  
+
 
 // ** Task for minifying SVG and creating a sprite
 export const svgMinifyAndSprite = () => {
@@ -190,6 +210,7 @@ export const development = series(
     compileSCSS,
     demoSCSS,
     minifyCSS,
+    CssForJs,
     svgMinifyAndSprite,
     optimizeImages,
     convertToWebp,
@@ -204,8 +225,8 @@ export const development = series(
         });
 
         watch(paths.PUG.allSrc, compilePug);
-        watch(paths.SCSS.src, series(compileSCSS, minifyCSS));
-        watch(paths.SCSS.demoSrc, series(demoSCSS, minifyCSS));
+        watch(paths.SCSS.src, series(compileSCSS, minifyCSS, CssForJs));
+        watch(paths.SCSS.demoSrc, series(demoSCSS, minifyCSS, CssForJs));
         watch(paths.svg.src, svgMinifyAndSprite);
         watch(paths.images.src, optimizeImages);
         watch(paths.images.src, convertToWebp);
@@ -218,6 +239,7 @@ export const build = series(
     compilePug,
     compileSCSS,
     minifyCSS,
+    CssForJs,
     svgMinifyAndSprite,
     optimizeImages,
     convertToWebp,

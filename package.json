@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "This project will be a universal template for different projects",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "dev": "npx gulp",
     "build": "npx gulp build"

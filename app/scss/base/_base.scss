@@ -3,7 +3,24 @@
     Content: Styles for links, buttons, tables, lists and other elements.
 */
 
-// @include font-face(Roboto, "./assets/Roboto", normal, normal);
+/* Для Webkit (Chrome, Safari) */
+::-webkit-scrollbar {
+    width: 12px; /* Ширина скроллбара */
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Цвет трека */
+    border-radius: 10px; /* Закругление трека */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888; /* Цвет ползунка */
+    border-radius: 10px; /* Закругление ползунка */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Цвет ползунка при наведении */
+}
 
 // ** Container
 .container {
@@ -32,4 +49,12 @@ a {
     &:focus {
       color: $secondary-color;
     }
+  }
+
+
+  // Temporarily
+
+  
+  #test-map {
+    height: 500px;
   }

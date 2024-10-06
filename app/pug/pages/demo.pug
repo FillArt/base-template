@@ -3,9 +3,11 @@ include ../components/inputs.pug
 include ../components/images.pug
 include ../components/buttons.pug
 include ../components/navigation.pug
+include ../components/maps.pug
 
 block head
   link(rel="stylesheet" href="css/demo.css")
+  link(rel="stylesheet" href="css/leaflet.css")
 
 block preload
 //-   link(rel="preload" href="/path/to/resource.css" as="style")
@@ -16,6 +18,7 @@ block content
   include ../sections/demo/demo-colors.pug
   include ../sections/demo/demo-inputs.pug
   include ../sections/demo/demo-buttons.pug
+  include ../sections/demo/demo-map.pug
 
 
 block scripts
