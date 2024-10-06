@@ -139,6 +139,11 @@ export const CssForJs = () => {
         .pipe(cleanCSS())                                   // Minified CSS
         // .pipe(rename({ suffix: '.min' }))                // Renames CSS files
         .pipe(dest(paths.CSS.dest));                        // Path to CSS update files
+}
+
+export const faviconToDest = () => {
+    return src('app/favicon.ico')                               // Path to CSS source files
+        .pipe(dest('dist'));                                    // Path to favicon
 }  
 
 
@@ -216,6 +221,7 @@ export const development = series(
     convertToWebp,
     scripts,
     minificatorFonts,
+    faviconToDest,
     function serve() {
         sync.init({
             server: {
@@ -244,7 +250,8 @@ export const build = series(
     optimizeImages,
     convertToWebp,
     scripts,
-    minificatorFonts
+    minificatorFonts,
+    faviconToDest
 );
 
 export default development;
