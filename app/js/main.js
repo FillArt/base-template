@@ -1,0 +1,1 @@
+console.log(typeof jQuery !== 'undefined' ? 'jQuery is loaded' : 'jQuery is not loaded');

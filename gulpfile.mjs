@@ -30,6 +30,7 @@ const sync = browserSync.create();
 
 // ** Path to all JS files
 const jsFiles = [
+    'app/js/validate/parsley.js',
     'app/js/map/leaflet.js',
     'app/js/map/config.js',
     'app/js/main.js',
@@ -196,7 +197,12 @@ export const scripts = () => {
       .pipe(uglify())                                       // JavaScript Minification
       .pipe(sourcemaps.write('.'))                          // Recording source code maps
       .pipe(gulp.dest(paths.JS.dest))                       // Path to output files
-      .pipe(sync.stream());                                 // Inject changes to browser
+      .pipe(sync.stream())                                  // Inject changes to browser
+      .on('end', () => {
+        // Move JQuery file
+        gulp.src('app/js/jquery-3.7.1.js')                  // Path to JQuery File
+          .pipe(gulp.dest(paths.JS.dest));                  // Put to output files
+    });
   };
 
 // ** Watcher for project

@@ -1,6 +1,7 @@
 .input {
     display: inline-block;
     position: relative;
+    width: 100%;
 
     & label {
         color: $input-label;
@@ -19,7 +20,7 @@
 
     & input, textarea, select {
         min-width: 220PX;
-
+        width: 100%;
         resize: none; 
         padding: 28px 12px 9px 12px;
         background: $input-background;
