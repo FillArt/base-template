@@ -1,0 +1,32 @@
+legend {
+  margin: 0 0 20px 0;
+  font-weight: bold;
+  @include font-size(20px);
+}
+
+fieldset {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.form-demo {
+  max-width: 500px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: center;
+  &:not(:last-child) {
+    margin: 0 0 20px 0;
+  }
+}
+
+.form-row-full {
+  width: 100%;
+  &:not(:last-child) {
+    margin: 0 0 20px 0;
+  }
+}

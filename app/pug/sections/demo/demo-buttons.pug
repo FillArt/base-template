@@ -1,0 +1,29 @@
+section#buttons.items
+    .container
+        section
+            h4.demo-title Path to file - <code> app\scss\components\_buttons.scss</code>
+            .items__item.buttons.title
+                div
+                    span Button 
+                div
+                    span Description
+            .items__item.buttons
+                div
+                    button Button
+                div
+                    span Main Button
+            .items__item.buttons
+                div
+                    +linkButton('Link Button', '#', 'Title', 'link-button')
+                div
+                    span Link Button
+                div
+                    pre +linkButton('Link Button', '#', 'Title', 'link-button')
+
+            .items__item.buttons
+                div
+                     +inputSubmitButton('Send')   
+                div
+                    span Submit Input
+                div
+                    pre  +inputSubmitButton('Send')   

@@ -1,0 +1,148 @@
+// ** Import abstracts
+@import 'abstracts/variables';   // Variables for colors, fonts, spacing, etc.
+@import 'abstracts/mixins';      // Mixins for reusable style patterns
+@import 'abstracts/functions';   // Functions for calculations and custom operations
+
+$navBackground: #00000014;
+
+.demo {
+    &-title {
+        margin: 0 0 40px 0;
+        padding: 0 16px;
+    }
+    &-nav {
+        position: fixed;
+        @include box(100%);
+        max-width: 400px;
+        padding: 35px;
+        background: $navBackground;
+        & h2, & h4, & p, & li {
+            margin: 0 0 16px 0;
+        }
+    }
+
+    &-content {
+        & h5, h4 {
+            // padding:0 16px 40px 16px;
+            font-weight: bold;
+        }
+
+        & section {
+            margin: 0 0 40px 0;
+        }
+    }
+
+    & .items {
+        padding: 50px 0 0 0;
+        &__item {
+            display: grid;
+            align-items: center;
+            border-bottom: 1px solid lightgrey;
+            & > div {
+                padding: 16px;
+            }
+            & .title {
+                @include font-size(14px);
+                font-weight: bold;
+            }
+        }
+    }
+
+    & .typography {
+        grid-template-columns: 3fr 1.5fr 6fr;
+    }
+
+    & .colors {
+        grid-template-columns: 1.5fr 1.5fr 9fr;
+        &.text {
+            &-primary {
+                color: $text-color;
+                & div > .example {
+                    @include box(16px);
+                    background: $text-color;
+                }
+            } 
+            &-secondary {
+                color: $text-secondary;
+                & div > .example {
+                    @include box(16px);
+                    background: $text-secondary;
+                }
+            } 
+            &-disabled{
+                color: $text-disabled;
+                & div > .example {
+                    @include box(16px);
+                    background: $text-disabled;
+                }
+            } 
+        }
+
+        &.main {
+            &-primary {
+                color: $primary-color;
+                & div > .example {
+                    @include box(16px);
+                    background: $primary-color;
+                }
+            }
+            &-secondary {
+                color: $secondary-color;
+                & div > .example {
+                    @include box(16px);
+                    background: $secondary-color;
+                }
+            }
+            &-background {
+                color: $background-color;
+                & div > .example {
+                    @include box(16px);
+                    background: $background-color;
+                }
+            }
+            &-border {
+                color: $border-color;
+                & div > .example {
+                    @include box(16px);
+                    background: $border-color;
+                }
+            }
+        }
+
+        &.input {
+            &-background {
+                // color: $input-background;
+                & div > .example {
+                    @include box(16px);
+                    background: $input-background;
+                }
+            }
+            &-label {
+                color: $input-label;
+                & div > .example {
+                    @include box(16px);
+                    background: $input-label;
+                }
+            }
+        }
+    }
+
+    & .inputs {
+        // outline: 1px solid red;
+        grid-template-columns: 6fr 6fr;
+        // align-items: start;
+        & > div {
+            display: grid;
+            align-items: center;
+            grid-template-columns: 4fr 8fr;
+            gap: 10px;
+        }
+    }
+
+    & .buttons {
+        grid-template-columns: 1.5fr 1.5fr 9fr;
+        & > div {
+            padding: 16px;
+        }
+    }
+}

@@ -1,0 +1,18 @@
+mixin ceoImage(baseName, format, altText, width, height)
+    - var srcWebP = baseName + '.webp'
+    - var srcImage = baseName + '.' + format
+    picture
+        source(srcset=srcWebP type="image/webp")
+        source(srcset=srcImage type="image/' + format + '")
+        img(src=srcImage alt=altText loading="lazy" width=width height=height)
+
+        //- +ceoImage('image', 'jpg', 'Description images', 600, 400)
+
+//- Mixin for using SVG icons from a sprite
+mixin svgIcon(iconName, width, height)
+    svg(width=width height=height)
+        //- Using the <use> element to reference the icon in the sprite
+        use(xlink:href=`./img/sprite.svg#${iconName}`)
+
+//- Call the mixin to display an icon named 'icon-name' with dimensions 24x24 pixels
+//- +svgIcon('icon-name', 24, 24)  

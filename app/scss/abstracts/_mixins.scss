@@ -1,0 +1,158 @@
+/* 
+    Goal: Identify mixins that can be reused for specific styles.
+    Contents: Mixins for media queries, Flexbox, Grid, animations, etc.
+*/
+
+// ** Box
+@mixin box($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+/* 
+  ===== Usage =====
+  div {
+      @include box(200px, 300px);
+      @include box(200px);
+  }
+*/
+
+// ** Flexbox Toolkit
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-center-column {
+  @include flex-center;
+  flex-direction: column;
+}
+
+@mixin flex-center-vert {
+  display: flex;
+  align-items: center;
+}
+
+@mixin flex-center-horiz {
+  display: flex;
+  justify-content: center;
+}
+
+/*
+  ===== Usage =====
+  .vertical-centered-element {
+      @include flex-center-vert;
+  }
+
+  .horizontally-centered-element {
+      flex-direction: column;
+      @include flex-center-vert;
+  }
+*/
+
+// !! Need test 
+// ** Pixel to REM Function
+// Converts pixels to rem units based on a base size
+@function rem($pixels, $base: 16px) {
+  @return $pixels / $base * 1rem;
+}
+
+
+// ** Font Size Mixin
+// Sets font size in rem units
+@mixin font-size($font-size-px, $base: 16px) {
+  $font-size-rem: rem($font-size-px, $base);
+  font-size: $font-size-rem;
+}
+// ** Line Height Mixin
+// Sets line-height as unitless value or directly if already unitless
+@mixin line-height($line-height, $font-size-px, $base: 16px) {
+  $font-size-rem: rem($font-size-px, $base);
+  
+  @if $line-height != normal {
+      @if type-of($line-height) == 'number' {
+          line-height: $line-height;
+      } @else if (unit($line-height) == 'px') {
+          $line-height-rem: rem($line-height, $base);
+          $line-height-unitless: $line-height-rem / $font-size-rem;
+          line-height: $line-height-unitless;
+      } @else {
+          line-height: $line-height;
+      }
+  } @else {
+      line-height: normal;
+  }
+}
+
+// ** Letter Spacing Mixin
+// Sets letter-spacing in rem units or directly if already in rem
+@mixin letter-spacing($letter-spacing, $base: 16px) {
+  @if $letter-spacing != normal {
+      @if (unit($letter-spacing) == 'px') {
+          $letter-spacing-rem: rem($letter-spacing, $base);
+          letter-spacing: $letter-spacing-rem;
+      } @else {
+          letter-spacing: $letter-spacing;
+      }
+  } @else {
+      letter-spacing: normal;
+  }
+}
+
+// ** Font Face
+@mixin font-face($font-name, $path, $weight: normal, $style: normal) {
+  @font-face {
+    font-family: quote($font-name);
+    src: url($path+".eot");
+    src: url($path+".eot?#iefix") format("embedded-opentype"), url($path+".woff")
+        format("woff"), url($path+".ttf") format("truetype"), url($path+".svg##{$font-name}")
+        format("svg");
+    font-weight: $weight;
+    font-style: $style;
+  }
+}
+
+/* 
+  ===== Usage ===== 
+  @include font-face(Roboto, "./assets/Roboto", normal, normal);
+*/
+
+// ** Media queries
+@mixin tablet {
+  @media only screen and (min-width: $tablet) {
+    @content;
+  }
+}
+
+@mixin large {
+  @media only screen and (min-width: $large) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media only screen and (min-width: $desktop) {
+    @content;
+  }
+}
+
+/*
+  ===== Usage =====
+  h1 {
+      font-size: 10px;
+
+      @include tablet {
+          font-size: 12px;
+      }
+
+      @include desktop {
+          font-size: 20px;
+      }
+  }
+*/

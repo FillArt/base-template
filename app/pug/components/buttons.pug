@@ -1,0 +1,6 @@
+mixin linkButton(label, link, title, className='link-button')
+    a(href= link, class= className, title= title) #{label}
+
+
+mixin inputSubmitButton(value)
+    input(type="submit" value=value)

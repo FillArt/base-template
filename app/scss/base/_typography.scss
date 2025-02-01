@@ -1,0 +1,117 @@
+/*
+    Goal: Defining styles for texts and typography.
+    Contents: Fonts, font sizes, line spacing, heading and paragraph styles.
+*/
+
+@include font-face(Roboto, "./fonts/Roboto/Roboto-Regular", normal, normal);
+@include font-face(Roboto, "./fonts/Roboto/Roboto-Bold", bold, normal);
+
+// ** Font Family **
+body {
+    font-family: $base-font-family;
+  }
+  
+  // ** Font Sizes **
+  h1 {
+    // @include font-size(52px, 58, 1.2);
+    @include font-size(96px);            // Set font size in rem
+    @include line-height(116px, 96px);   // Set line-height (unitless value)
+    @include letter-spacing(-1.5px);       // Set letter-spacing in rem
+    font-weight: bold;
+  }
+  
+  h2 {
+    // @include font-size(42px, 48, 1.2);
+    @include font-size(60px);            // Set font size in rem
+    @include line-height(72px, 60px);   // Set line-height (unitless value)
+    @include letter-spacing(-0.5px);       // Set letter-spacing in rem
+    font-weight: bold;
+  }
+  
+  h3 {
+    // @include font-size(32px, 38, 1.2);
+    @include font-size(48px);            // Set font size in rem
+    @include line-height(55px, 48px);   // Set line-height (unitless value)
+    font-weight: bold;
+  }
+  
+  h4 {
+    // @include font-size(22px, 28, 1.2);
+    @include font-size(34px);            // Set font size in rem
+    @include line-height(41px, 34px);   // Set line-height (unitless value)
+    @include letter-spacing(0.25px);       // Set letter-spacing in rem
+    font-weight: bold;
+  }
+  
+  h5 {
+    // @include font-size(12px, 18, 1.2);
+    @include font-size(24px);            // Set font size in rem
+    @include line-height(32px, 24px);   // Set line-height (unitless value)
+    // @include letter-spacing(2px);       // Set letter-spacing in rem
+  }
+  
+
+  h6 {
+    // @include font-size(10px, 8, 1.2);
+    @include font-size(20px);            // Set font size in rem
+    @include line-height(32px, 20px);   // Set line-height (unitless value)
+    @include letter-spacing(-0.15px);       // Set letter-spacing in rem
+  }
+
+  
+  
+  // ** Paragraphs **
+  p {
+    // @include font-size(16px, 18, 1.2);
+    @include font-size(14px);            // Set font size in rem
+    @include line-height(20px, 14px);    // Set line-height (unitless value)
+    @include letter-spacing(0.17px);     // Set letter-spacing in rem
+  }
+  
+  // ** Blockquotes **
+  blockquote {
+    // @include font-size(20px, 22, 1.2);
+    @include font-size(12px);            // Set font size in rem
+    @include line-height(18px, 12px);   // Set line-height (unitless value)
+    @include letter-spacing(2px);       // Set letter-spacing in rem
+    margin: 0 0 20px 0;
+    padding: 0.5em 1em;
+    border-left: $border-width solid $border-color;
+    background-color: $background-color;
+  }
+  
+  // ** Lists **
+  ul, ol {
+    padding: 0 0 0 10px;
+  }
+  
+  ul {
+    list-style-type: none;
+  }
+  
+  ol {
+    list-style-type: decimal;
+  }
+  
+  strong {
+    font-weight: bold;
+  }
+  
+  // ** Inline Code and Code Blocks **
+  code {
+    font-family: 'Courier New', monospace;
+    background-color: black;
+    color: white;
+    padding: 0.2em 0.4em;
+    border-radius: $border-radius;
+  }
+  
+  pre {
+    font-family: 'Courier New', monospace; 
+    background-color: black;
+    color: white;
+    padding: 1em;
+    border-radius: $border-radius;
+    overflow-x: auto;
+    white-space: pre-wrap;
+  }

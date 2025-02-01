@@ -1,0 +1,32 @@
+section#inputs.items
+    .container
+        section
+            h4.demo-title Path to files - <pre> app\scss\components\_inputs.scss <br> app\pug\components\inputs.pug</pre>
+        
+            .items__item.inputs
+                div
+                    +textInput('Name', 'Value', 'text-input')
+                    pre +textInput('L', 'Plc', 'ID')
+
+                div
+                    +textareaInput('Name', 'Value', 'text-input')
+                    pre +textareaInput <br> ('L', 'Plc', 'ID', 'R', 'C')
+            
+            .items__item.inputs
+                div
+                    +selectInput('Name', 'mySelect', [
+                        { value: '1', text: 'Option 1' },
+                        { value: '2', text: 'Option 2' },
+                        { value: '3', text: 'Option 3' }
+                    ])
+
+                    pre +selectInput <br> ('L', 'ID', <br> [{k: 'v', k : 'v'}])
+
+                div
+                    +radioInput('Name', 'id1', 'value', 'label')
+                    pre +radioInput <br>('N', 'id', 'val', 'l')
+
+            .items__item.inputs
+                div(style="text-align:center")
+                    +checkboxInput('Name', 'Value', 'Label')
+                    pre +checkboxInput('ID', 'Val', 'L')                             

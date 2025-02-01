@@ -1,0 +1,19 @@
+/*
+    Goal: Define a grid for the layout.
+    Content: Styles for columns, containers and rows.
+*/
+
+// ** Grid Container Mixin
+@mixin grid-container($columns: 12, $gap: 16px) {
+    display: grid;
+    grid-template-columns: repeat($columns, 1fr);
+    gap: $gap;
+  }
+  
+/* 
+    ======= Usage ========
+  .container {
+    @include grid-container(12, 24px);
+  }
+
+*/  

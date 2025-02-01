@@ -1,0 +1,60 @@
+/*
+    Goal: Define basic styles for elements.
+    Content: Styles for links, buttons, tables, lists and other elements.
+*/
+
+/* Для Webkit (Chrome, Safari) */
+::-webkit-scrollbar {
+    width: 12px; /* Ширина скроллбара */
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Цвет трека */
+    border-radius: 10px; /* Закругление трека */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888; /* Цвет ползунка */
+    border-radius: 10px; /* Закругление ползунка */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Цвет ползунка при наведении */
+}
+
+// ** Container
+.container {
+    max-width: $container-width;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+
+// ** Global Styles
+html, body {
+    // @include font-size(12px, 18, 1.2);
+    font-family: $base-font-family; 
+    $text-color: $text-color;
+    margin: 0; 
+    padding: 0; 
+}
+
+// ** Links
+a {
+    text-decoration: none;
+    color: $text-color; 
+    
+    &:hover,
+    &:focus {
+      color: $secondary-color;
+    }
+  }
+
+
+  // Temporarily
+
+  
+  #test-map {
+    height: 500px;
+  }

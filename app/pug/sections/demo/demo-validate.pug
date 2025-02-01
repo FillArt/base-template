@@ -1,0 +1,29 @@
+section#validate.items
+    .container
+        h4.demo-title Path to file - <pre> app\scss\components\_forms.scss <br> app\pug\sections\demo\demo-validate.pug </pre> 
+
+        form(action="#", method="post", class="form-demo")
+            fieldset
+                legend Test Form
+                .form-row
+                    +textInput('First Name', 'John', 'first-name')
+                    +textInput('Last Name', 'King', 'last-name')
+
+                .form-row
+                    +textInput('Address', '155 Charlotte Street', 'address')
+                    +textInput('City', 'Canada', 'city')
+
+                .form-row-full
+                    +selectInput('Choose', 'demo-select', [{ value: '1', text: 'Option 1' },
+                        { value: '2', text: 'Option 2' },
+                        { value: '3', text: 'Option 3' }])
+
+                .form-row
+                    +checkboxInput('checkbox-one', 'First Checkbox', 'One')
+                    +checkboxInput('checkbox-two', 'Second Checkbox', 'Two')
+
+                .form-row-full
+                    +textareaInput('Message', 'Hello World!', 'message', 'R', 50)
+
+                .form-row-full
+                    +inputSubmitButton('Send')        
